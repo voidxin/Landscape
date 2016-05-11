@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
+#import "VerticalViewController.h"
+#import "LandscapeViewController.h"
+#import "CustomerTabBarController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,7 +19,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window.frame=[UIScreen mainScreen].bounds;
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+    //
+    CustomerTabBarController *tabBarController=[[CustomerTabBarController alloc]init];
+    VerticalViewController *verticalVC=[[VerticalViewController alloc]init];
+    verticalVC.tabBarItem.title=@"竖屏";
+    
+    LandscapeViewController *landscpeVC=[[LandscapeViewController alloc]init];
+    landscpeVC.tabBarItem.title=@"横屏";
+    
+    
+    [tabBarController addChildViewController:verticalVC];
+    [tabBarController addChildViewController:landscpeVC];
+    
+    
+    self.window.rootViewController=tabBarController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
