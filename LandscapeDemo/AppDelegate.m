@@ -22,6 +22,10 @@
     self.window.frame=[UIScreen mainScreen].bounds;
     [self.window setBackgroundColor:[UIColor whiteColor]];
     //
+    [self addChildViews];
+    return YES;
+}
+-(void)addChildViews{
     CustomerTabBarController *tabBarController=[[CustomerTabBarController alloc]init];
     VerticalViewController *verticalVC=[[VerticalViewController alloc]init];
     verticalVC.tabBarItem.title=@"竖屏";
@@ -36,10 +40,8 @@
     
     self.window.rootViewController=tabBarController;
     [self.window makeKeyAndVisible];
-    
-    return YES;
-}
 
+}
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
